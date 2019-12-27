@@ -229,8 +229,8 @@ def instructorApproval(request):
 
         if form.is_valid():
             name = form.cleaned_data['name']
-            birth = form.cleaned_data['birth']
-            instructor = Instructor.objects.get(name=name, birth=birth)
+            phone = form.cleaned_data['phone']
+            instructor = Instructor.objects.get(name=name, phone=phone)
             if instructor is not None:
                 username = form.cleaned_data['username']
                 user = CustomUser.objects.get(username=username)
@@ -239,7 +239,7 @@ def instructorApproval(request):
                     user.groups.add(group)
                     user.instructor = instructor
                     user.save()
-                    return render(request, 'mypage.html', {'message':'신청이 완료되었습니다. 등록이 완료되면 메일로 알려드리도록 하겠습니다.'})
+                    return render(request, 'mypage.html', {'message':'신청이 완료되었습니다. 등록이 완료되면 문자로 알려드리도록 하겠습니다.'})
                 else:
                     form = InstructorApplicationForm()
                     return render(request, 'instructor_approval.html', {'message': '입력하신 아이디에 해당하는 사용자를 찾지 못했습니다.', 'form': form})
