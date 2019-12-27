@@ -96,5 +96,5 @@ class CustomUserChangeForm(UserChangeForm):
 
 class InstructorApplicationForm(forms.Form):
     name = forms.CharField()
-    birth = forms.DateField()
+    phone = forms.CharField()
     username = forms.CharField()

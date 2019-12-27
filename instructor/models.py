@@ -35,7 +35,7 @@ class Instructor(models.Model):
     )
 
     name = models.CharField(max_length=10, verbose_name='이름')
-    birth = models.DateField(default=timezone.now, verbose_name='생년월일')
+    phone = models.CharField(max_length=11, verbose_name='전화번호', help_text='-없이 입력해주세요.')
     gender = models.CharField(max_length=1,
         choices=GENDER_CHOICES,
         default='F',
