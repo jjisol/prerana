@@ -1,0 +1,345 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Example headline.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption text-right">
+            <h1>One more for good measure.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <div class="container marketing">
+    <div class="form-inline">
+        <h1>인기클래스</h1>
+    </div>
+    <br>
+    <div class="swiper-container">
+    <div class="swiper-wrapper">
+      {% for oneday in onedayclass %}
+      <div class="swiper-slide">
+        <div class="card" style="width:250px height:500px">
+            <a href="{% url 'class_detail' id=oneday.id %}"><img class="card-img-top" src="{{ oneday.image.url }}" width="200" height="250"></a>
+            <div class="card-body" style="height:180px">
+              <div class="card-title mb-1 text-muted">{{ oneday.name }}</div>
+              <p class="card-text">{{ oneday.description }}</p>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 네비게이션 -->
+    <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+    <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+
+    </div>
+
+    <hr class="featurette-divider">
+    <div class="form-inline">
+        <h1>최신클래스</h1>
+    </div>
+    <br>
+    <div class="swiper-container">
+    <div class="swiper-wrapper">
+      {% for newclass in newclasses %}
+      <div class="swiper-slide">
+        <div class="card" style="width:250px height:500px">
+            <a href="{% url 'class_detail' id=newclass.id %}"><img class="card-img-top" src="{{ newclass.image.url }}" width="200" height="250"></a>
+            <div class="card-body" style="height:180px">
+              <div class="card-title mb-1 text-muted">{{ newclass.name }}</div>
+              <p class="card-text">{{ newclass.description }}</p>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 네비게이션 -->
+    <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+    <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+
+    </div>
+
+    <hr class="featurette-divider">
+    <div class="form-inline">
+        <h1>마감임박 클래스</h1>
+    </div>
+    <br>
+    <div class="swiper-container">
+    <div class="swiper-wrapper">
+      {% for endclass in endclasses %}
+      <div class="swiper-slide">
+        <div class="card" style="width:250px height:500px">
+            <a href="{% url 'class_detail' id=endclass.id %}"><img class="card-img-top" src="{{ endclass.image.url }}" width="200" height="250"></a>
+            <div class="card-body" style="height:180px">
+              <div class="card-title mb-1 text-muted">{{ endclass.name }}</div>
+              <p class="card-text">{{ endclass.description }}</p>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+              <a href="/hotclass_details"><img src="https://biketago.com/img/p/0701.jpg" width="200" height="250"></a>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>>
+      </div>
+    </div>
+
+    <!-- 네비게이션 -->
+    <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+    <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+
+    </div>
+    </div>
+
+    <script type="text/javascript">
+      new Swiper('.swiper-container', {
+
+      	slidesPerView : 4, // 동시에 보여줄 슬라이드 갯수
+      	spaceBetween : 30, // 슬라이드간 간격
+      	slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
+
+      	// 그룹수가 맞지 않을 경우 빈칸으로 메우기
+      	// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+      	loopFillGroupWithBlank : true,
+
+      	loop : true, // 무한 반복
+
+      	pagination : { // 페이징
+      		el : '.swiper-pagination',
+      		clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+      	},
+      	navigation : { // 네비게이션
+      		nextEl : '.swiper-button-next', // 다음 버튼 클래스명
+      		prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
+      	},
+      });
+
+    </script>
+  {% endblock %}

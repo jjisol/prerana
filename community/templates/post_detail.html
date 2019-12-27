@@ -1,0 +1,125 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+
+</div>
+  <div class="container marketing">
+    <div class="card">
+      <div class="card-body">
+          <h3 class="card-title">{{ post.title }}</h3>
+          {% if post.published_date %}
+              <div class="card-subtitle mb-2 text-muted">
+                  {{ post.published_date }}
+              </div>
+          {% endif %}
+          <p>{{ post.text|linebreaksbr }}</p>
+      </div>
+      <div class="card-footer text-right">
+        {% if user.is_authenticated %}
+        <a class="btn btn-sm btn-outline-secondary" href="{% url 'post_edit' id=post.id %}">수정</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{% url 'post_remove' id=post.id %}">삭제</a>
+        {% endif %}
+      </div>
+    </div>
+    <br>
+
+    {% load disqus_tags %}
+    {% set_disqus_developer 1 %}
+    {% set_disqus_url post.get_absolute_url %}
+    <div id="disqus_thread">
+      {% disqus_show_comments %}
+    </div>
+
+
+    <hr class="featurette-divider">
+    <div class="form-inline">
+      <h3>댓글</h3>
+    </div>
+    <p>댓글이 {{ post.comments.count }}개 있습니다.</p><br>
+    {% for comment in post.comments.all %}
+        <div class="comment row mb-1">
+          <div class="col-md-12">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <div class="form-inline">
+                  <h5>{{ comment.author }}</h5>
+                </div>
+                <h8 class="date text-muted col-offset-md-12">{{ comment.created_date }}</h8>
+                <p class="card-text mb-auto">{{ comment.text|linebreaks }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% empty %}
+    <div class="comment row mb-1">
+      <div class="col-md-12">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <p>댓글을 작성해주세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <form method="POST" class="post-form">{% csrf_token %}
+      <div class="form-group row">
+        {% if user.is_authenticated %}
+          <label for="user" class="col-sm-2 col-form-label">{{user}}</label>
+        {% else %}
+          <label for="user" class="col-sm-2 col-form-label">로그인해주세요.</label>
+        {% endif %}
+        <div class="col-sm-12">{{ form.text }}</div>
+      </div>
+      <div class="text-right">
+        {% if user.is_authenticated %}
+          <button type="submit" class="save btn btn-primary">댓글 작성</button>
+        {% else %}
+          <button type="button" class="btn btn-primary" data-toggle="modal"
+          data-target="#alarmModal">댓글작성</button>
+        {% endif %}
+      </div>
+    </form>
+  </div>
+
+  <div class="modal fade" id="alarmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">알림창</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          댓글를 작성하기 위해서는 로그인해야 합니다. 로그인 페이지로 이동하시겠습니까?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            <a href="/signin"><button type="button" class="btn btn-primary" type="submit">이동</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+{% endblock %}
+<script type="text/javascript">
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+var disqus_developer = 1; // this would set it to developer mode
+var disqus_config = function () {
+this.page.url = '{{ site.url }}{{ post.get_absolute_url }}'';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = '{{ post.id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://prerana.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><script id="dsq-count-scr" src="//prerana.disqus.com/count.js" async></script>

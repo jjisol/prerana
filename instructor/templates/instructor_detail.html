@@ -1,0 +1,120 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Example headline.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption text-right">
+            <h1>One more for good measure.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <div class="container marketing">
+    <h3>강사프로필</h3><br></br>
+    <div class="row">
+      <div class="col-md-4 order-md-1" id="sidebox">
+        <div class="card">
+          <img src="{{ instructor.image.url }}" class="card-img-top" width="400">
+          <div class="card-body">
+            <h4 class="card-title">{{ instructor.name }}</h4>
+            <p class="card-text">{{ instructor.greeting }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 order-md-2">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <h4 class="mb-0">보유자격증</h4><br>
+            {% for certificate in instructor.certificate.all %}
+            <p class="card-text mb-auto">{{ certificate.name }}</p>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <h4 class="mb-0">강사 SNS</h4><br>
+            <a href="{{ instructor.sns_url }}" class="stretched-link">{{ instructor.sns_url }}</a>
+          </div>
+        </div>
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <h4 class="mb-0">이용가격</h4><br>
+            {% for yoga in instructor.yoga_instructor.all %}
+            <p class="mb-auto">요가: {{ yoga.price }}</p>
+            {% endfor %}
+            {% for pilates in instructor.pilates_instructor.all %}
+            <p class="mb-auto">필라테스: {{ pilates.price }}</p>
+            {% endfor %}
+          </div>
+        </div>
+        <hr class="featurette-divider">
+        <h3 class="card-title">개인스케줄</h3><br>
+        <div class="card">
+          <img src="{{ instructor.schedule.url }}" class="card-img-top">
+        </div>
+        <hr class="featurette-divider">
+        <h3>근무센터 사이트 바로가기</h3><br>
+        {% for center in instructor.center.all %}
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                  <h5 class="mb-0">{{ center.name }}</h5><br>
+                  <a href="{{ center.site }}" class="stretched-link">{{ center.site|linebreaks }}</a>
+              </div>
+            </div>
+        {% empty %}
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                  <h5 class="mb-0">근무중인 센터가 없습니다.</h5>
+              </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+  <script type="text/javascript">
+
+  </script>
+
+
+  {% endblock %}

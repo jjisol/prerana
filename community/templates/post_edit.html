@@ -1,0 +1,12 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<div class="jumbotron">
+  
+</div>
+  <div class="container marketing">
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-outline-secondary">Save</button>
+    </form>
+  </div>
+{% endblock %}
